@@ -24,6 +24,7 @@ public class Task6175 {
                 while (reader.hasNext()){
                     line = reader.nextLine();
                     System.out.printf(line+'\n');
+
                 }
 
 
