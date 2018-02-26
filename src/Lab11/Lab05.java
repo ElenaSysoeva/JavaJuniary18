@@ -9,7 +9,7 @@ public class Lab05 {
 
 
     }
-    if
+
 
     public static Boolean task8715(int a, int b, int c){
             return (a<b && b<c);
