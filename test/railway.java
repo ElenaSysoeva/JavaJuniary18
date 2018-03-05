@@ -10,18 +10,41 @@ public class railway {
 
     @Test
     public void test(){
+        Boolean cat = false;
+        try {
+            City omsk = new City("Омск");
+            Controller C = new Controller();
+            C.addCity(omsk);
+            C.linkCities(omsk, omsk);
+
+
+        }catch (IllegalArgumentException e){
+            cat = true;
+
+        }
+
+        Assert.assertTrue(cat);
+
+    }
+
+
+
+    @Test
+    public void checkcity(){
 
         Controller C = new Controller();
         City msc = new City ("Москва");
         City omsk = new City("Омск");
+        City nov = new City ("Новосибирск");
         C.addCity(msc);
+        C.addCity(omsk);
 
-        C.linkCities(msc, omsk);
-        Assert.assertTrue(C.checkLink(msc, omsk));
-        //ArrayList <City> List = new ArrayList<>();
-        //City msc = new City ("Москва");
-        //List.add(msc);
+        C.linkCities(msc, omsk); //связь
+        Assert.assertTrue(C.checkLink(msc, omsk)); //возвращает False если не найдено в связях
+        Assert.assertTrue(C.checkLink(omsk, msc));  //проверка
 
-       // Assert.assertTrue(List.contains(msc)); //проверка
+        Assert.assertFalse(C.checkLink(omsk, nov)); //проверка
+        Assert.assertFalse(C.checkLink(msc, nov));  //проверка
+
     }
 }
