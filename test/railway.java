@@ -47,4 +47,24 @@ public class railway {
         Assert.assertFalse(C.checkLink(msc, nov));  //проверка
 
     }
+
+    @Test
+    public void checkaddcity(){ //проверка добавляем один и тот же город => return false
+     Controller C = new Controller();
+    City nov1 = new City("Новосибирск") ;
+    City nov2 = new City ("Новосибирск");
+    Boolean rezult = false;
+
+    try{
+        C.addCity(nov1);
+        C.addCity(nov2);
+    }
+    catch  (IllegalArgumentException e){
+
+            rezult = true;
+        }
+
+        Assert.assertTrue(rezult);
+
+    }
 }

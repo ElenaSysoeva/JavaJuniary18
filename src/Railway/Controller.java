@@ -10,7 +10,9 @@ public class Controller {
     ArrayList <Part> listParts = new ArrayList<>();
 
     public void addCity(City c){
-        //добавлялись города;
+
+
+                //добавлялись города;
       list.add(c);
 
 
@@ -46,6 +48,8 @@ public class Controller {
 
         return false;
     }
+
+
 
 
 

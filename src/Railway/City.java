@@ -7,4 +7,10 @@ public class City {
         this.Name = name;
 
     }
+
+    Boolean equals (Object o)
+    {
+        if (this == o) return true;
+
+    }
 }
