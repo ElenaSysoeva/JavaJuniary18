@@ -4,12 +4,13 @@ import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class railway {
 
     @Test
-    public void test(){
+    public void test() {
         Boolean cat = false;
         try {
             City omsk = new City("Омск");
@@ -18,7 +19,7 @@ public class railway {
             C.linkCities(omsk, omsk);
 
 
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             cat = true;
 
         }
@@ -28,14 +29,13 @@ public class railway {
     }
 
 
-
     @Test
-    public void checkcity(){
+    public void checkcity() {
 
         Controller C = new Controller();
-        City msc = new City ("Москва");
+        City msc = new City("Москва");
         City omsk = new City("Омск");
-        City nov = new City ("Новосибирск");
+        City nov = new City("Новосибирск");
         C.addCity(msc);
         C.addCity(omsk);
 
@@ -49,22 +49,55 @@ public class railway {
     }
 
     @Test
-    public void checkaddcity(){ //проверка добавляем один и тот же город => return false
-     Controller C = new Controller();
-    City nov1 = new City("Новосибирск") ;
-    City nov2 = new City ("Новосибирск");
-    Boolean rezult = false;
+    public void checkaddcity() { //проверка добавляем один и тот же город => return false
+        Controller C = new Controller();
+        City nov1 = new City("Новосибирск");
+        City nov2 = new City("Новосибирск");
+        Boolean rezult = false;
 
-    try{
-        C.addCity(nov1);
-        C.addCity(nov2);
-    }
-    catch  (IllegalArgumentException e){
+        try {
+            C.addCity(nov1);
+            C.addCity(nov2);
+        } catch (IllegalArgumentException e) {
 
             rezult = true;
         }
 
         Assert.assertTrue(rezult);
+
+    }
+
+    @Test
+    public void testCreateTrip() {
+        Controller C = new Controller(); //методы контроллера не статические
+        City cityFrom = new City("Москва");
+        City cityTo = new City("Омск");
+        String dDep = "19:27:00 19.03.2018";
+        String number = "P-123";
+        C.createTrip(cityFrom, cityTo, number, dDep);
+
+
+    }
+
+    @Test
+    public void checkTripYesterday() {
+        Controller C = new Controller();
+        City cityFrom = new City("Москва");
+        City cityTo = new City("Омск");
+        String number = "P-123";
+        Boolean check = false;
+
+        try {
+            String dDep = "19:27:00 18.03.2018";
+            C.createTrip(cityFrom, cityTo, number, dDep);
+        }catch(IllegalArgumentException e)
+        {
+            check = true;
+            System.out.println(e.getMessage());
+        }
+
+        Assert.assertTrue(check);
+
 
     }
 }
